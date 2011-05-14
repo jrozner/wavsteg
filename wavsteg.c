@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
   wav_header header;
   FILE *infp, *datafp, *newfp;
   int wav_data, data, i = 16;
-  int masks[] = {0xfffefffe, 0xfffeffff, 0xfffffffe, 0xffffffff};
+  int masks[] = {0x00000000, 0x00010000, 0x00000001, 0x00010001};
 
   if (argc != 4)
   {
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     fread(&wav_data, sizeof(int), 1, infp);
 
     if (!feof(datafp))
-      wav_data = wav_data & masks[0x00000003 & data];
+      wav_data = wav_data | masks[0x00000003 & data];
 
     fwrite(&wav_data, sizeof(int), 1, newfp);
     data = data >> 2;
