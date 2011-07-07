@@ -1,3 +1,7 @@
+/*
+	HERP DERP
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "wavsteg.h"
